@@ -43,8 +43,12 @@ public class MainActivity extends ListActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setListAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, PENS));
+        //setListAdapter(new ArrayAdapter<String>(this,
+        //        android.R.layout.simple_list_item_1, PENS));
+
+        setListAdapter(new ArrayAdapter(
+                this,android.R.layout.simple_list_item_1,
+                this.populate()));
     }
 
     protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -59,7 +63,7 @@ public class MainActivity extends ListActivity{
 
         try {
             URL url = new URL
-                    ("http://SOMETHING.json");
+                    ("http://api.myjson.com/bins/37xva");
             HttpURLConnection urlConnection =
                     (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
